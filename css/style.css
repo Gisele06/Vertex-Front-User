@@ -1,0 +1,15 @@
+body{
+    background-image: url(../img/background_pequeno.png);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+header{
+    width: 100%;
+    min-height: 90px;
+    background-image: url('../img/navbar.svg');
+    background-size: cover;
+
+}
