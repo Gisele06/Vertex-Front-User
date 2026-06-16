@@ -1,7 +1,7 @@
 // URL base que você vai usar quando a API estiver pronta
 const url = 'http://localhost:8080/v1/senai/pizzaria/pizza';
 
-// Função para criar o card da pizza usando estritamente o padrão da aula (createElement / appendChild)
+// Função para criar o card da pizza 
 function criarCardPizza(pizza) {
     const card = document.createElement('div');
     card.classList.add('pizza-card');
@@ -16,7 +16,6 @@ function criarCardPizza(pizza) {
     const descricao = document.createElement('p');
     descricao.textContent = pizza.descricao;
 
-    // Junta os elementos dentro do card principal igualzinho ao seu print
     card.appendChild(img);
     card.appendChild(titulo);
     card.appendChild(descricao);
@@ -42,7 +41,7 @@ const dadosProvisorios = [
     }
 ];
 
-// Função para filtrar e mostrar as pizzas na tela usando .then() e loops simples
+// Função para filtrar e mostrar as pizzas na tela usando
 function carregarCardapio(tipoSelecionado) {
     const grid = document.getElementById('pizza-grid');
     const titleBanner = document.getElementById('menu-title');
