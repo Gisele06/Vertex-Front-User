@@ -1,83 +1,238 @@
+<!-- Declara que o documento está utilizando HTML5 -->
 <!DOCTYPE html>
+
+<!-- Início do documento HTML e define o idioma da página como português do Brasil -->
 <html lang="pt-br">
+
 <head>
+
+    <!-- Define a codificação de caracteres como UTF-8 (permite acentos, ç, etc.) -->
     <meta charset="UTF-8">
+
+    <!-- Faz com que a página seja responsiva em celulares e tablets -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título que aparece na aba do navegador -->
     <title>Acme Pizza Corp</title>
+
+    <!-- Importa o arquivo reset.css, que remove estilos padrões dos navegadores -->
     <link rel="stylesheet" href="./css/reset.css">
+
+    <!-- Importa o arquivo principal de estilos do site -->
     <link rel="stylesheet" href="./css/style.css">
+
+    <!-- Cria uma conexão antecipada com o servidor do Google Fonts para melhorar o carregamento -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- Conexão antecipada com o servidor das fontes -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Importa a fonte Kavoon -->
     <link href="https://fonts.googleapis.com/css2?family=Kavoon&display=swap" rel="stylesheet">
+
+    <!-- Importa a fonte Karma com vários pesos (300 até 700) -->
     <link href="https://fonts.googleapis.com/css2?family=Karma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
 
+    <!-- ========================= -->
+    <!-- CABEÇALHO DO SITE -->
+    <!-- ========================= -->
+
     <header>
+
+        <!-- Menu de navegação -->
         <nav>
+
+            <!-- Lista de itens do menu -->
             <ul>
-                <li><a href="#" id="nav-home">Home</a></li>
-                <li><a href="#" id="nav-cardapio" class="category-btn" data-type="Todos">Cardápio</a></li>
+
+                <!-- Link para voltar para a página inicial -->
+                <li>
+                    <a href="#" id="nav-home">Home</a>
+                </li>
+
+                <!-- Link que abre o cardápio -->
+                <!-- data-type="Todos" será usado pelo JavaScript para mostrar todas as pizzas -->
+                <li>
+                    <a href="#"
+                       id="nav-cardapio"
+                       class="category-btn"
+                       data-type="Todos">
+                        Cardápio
+                    </a>
+                </li>
+
             </ul>
+
         </nav>
+
     </header>
 
-    <main>
-        <section class="hero" id="hero-section">
-            <div class="hero_text">
-                <h2>Sabor explosivo</h2>
-                <h1>Acme Pizza Corp</h1>
-                <span>Av. Queijo Quente, 123.</span>
-            </div>
-    
-            <div class="queijo">
-                <img src="./img/burrata_home.svg" alt="Imagem de queijo Burrata">
-            </div>
-    
-            <div class="pizza_principal">
-                <img src="./img/pizza_home.svg" alt="Imagem de uma pizza">
-            </div>
-    
-            <div class="tomate">
-                <img src="./img/tomate_home.svg" alt="Imagem de tomates">
-            </div>  
+    <!-- ========================= -->
+    <!-- CONTEÚDO PRINCIPAL -->
+    <!-- ========================= -->
 
-            <div class="listras">
-                <div class="cor1"></div>
-                <div class="cor2"></div>
-                <div class="cor3"></div>
+    <main>
+
+        <!-- ====================================== -->
+        <!-- SEÇÃO HERO (Primeira parte da página) -->
+        <!-- ====================================== -->
+
+        <section class="hero" id="hero-section">
+
+            <!-- Texto principal da página -->
+            <div class="hero_text">
+
+                <!-- Frase de destaque -->
+                <h2>Sabor explosivo</h2>
+
+                <!-- Nome da pizzaria -->
+                <h1>Acme Pizza Corp</h1>
+
+                <!-- Endereço -->
+                <span>Av. Queijo Quente, 123.</span>
+
             </div>
+
+            <!-- Imagem decorativa de queijo -->
+            <div class="queijo">
+                <img
+                    src="./img/burrata_home.svg"
+                    alt="Imagem de queijo Burrata">
+            </div>
+
+            <!-- Imagem principal da pizza -->
+            <div class="pizza_principal">
+                <img
+                    src="./img/pizza_home.png"
+                    alt="Imagem de uma pizza">
+            </div>
+
+            <!-- Imagem decorativa de tomates -->
+            <div class="tomate">
+                <img
+                    src="./img/tomate_home.svg"
+                    alt="Imagem de tomates">
+            </div>
+
+            <!-- Faixas coloridas decorativas -->
+            <div class="listras">
+
+                <!-- Primeira faixa -->
+                <div class="cor1"></div>
+
+                <!-- Segunda faixa -->
+                <div class="cor2"></div>
+
+                <!-- Terceira faixa -->
+                <div class="cor3"></div>
+
+            </div>
+
         </section>
+
+        <!-- ====================================== -->
+        <!-- SEÇÃO DAS CATEGORIAS -->
+        <!-- ====================================== -->
 
         <section class="cardapio" id="categories-section">
+
+            <!-- Container que guarda todos os cartões -->
             <div class="cards">
-                <a href="#" class="category-btn" data-type="Salgada">
+
+                <!-- Cartão de pizzas salgadas -->
+                <a href="#"
+                   class="category-btn"
+                   data-type="Salgada">
+
                     <div class="card_sabor">
+
+                        <!-- Nome da categoria -->
                         <span>Pizzas Salgadas</span>
-                        <img src="./img/pizzas_salgadas.png" alt="Salgadas">
+
+                        <!-- Imagem da categoria -->
+                        <img
+                            src="./img/pizzas_salgadas.png"
+                            alt="Salgadas">
+
                     </div>
+
                 </a>
-                <a href="#" class="category-btn" data-type="Todos">
+
+                <!-- Cartão de todos os sabores -->
+                <a href="#"
+                   class="category-btn"
+                   data-type="Todos">
+
                     <div class="card_sabor">
+
                         <span>Todos os Sabores</span>
-                        <img src="./img/pizzas_mistas.png" alt="Todos os sabores">
+
+                        <img
+                            src="./img/pizzas_mistas.png"
+                            alt="Todos os sabores">
+
                     </div>
+
                 </a>
-                <a href="#" class="category-btn" data-type="Doce">
+
+                <!-- Cartão de pizzas doces -->
+                <a href="#"
+                   class="category-btn"
+                   data-type="Doce">
+
                     <div class="card_sabor">
+
                         <span>Pizzas Doces</span>
-                        <img src="./img/pizzas_doces.png" alt="Doces">
+
+                        <img
+                            src="./img/pizzas_doces.png"
+                            alt="Doces">
+
                     </div>
+
                 </a>
+
             </div>
+
         </section>
 
-        <section id="menu-view" class="menu-view hidden">
-            <div id="menu-title" class="menu-title-banner">Todos os Sabores</div>
-            <div id="pizza-grid" class="pizza-grid"></div>
+        <!-- ====================================== -->
+        <!-- ÁREA QUE O JAVASCRIPT PREENCHE -->
+        <!-- ====================================== -->
+
+        <!-- hidden significa que esta seção começa escondida -->
+        <section
+            id="menu-view"
+            class="menu-view hidden">
+
+            <!-- Título da categoria selecionada -->
+            <div
+                id="menu-title"
+                class="menu-title-banner">
+
+                Todos os Sabores
+
+            </div>
+
+            <!-- Local onde o JavaScript irá inserir os cards das pizzas -->
+            <div
+                id="pizza-grid"
+                class="pizza-grid">
+
+            </div>
+
         </section>
+
     </main>
 
-    <script src="main.js"></script>
+    <!-- Importa o arquivo JavaScript -->
+    <!-- defer faz o navegador carregar o HTML primeiro e executar o JS depois -->
+    <script src="main.js" defer></script>
+
 </body>
+
 </html>

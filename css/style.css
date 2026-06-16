@@ -80,6 +80,7 @@ nav ul li a {
     transform: translateX(-48%);
     top: 327px;
     z-index: 2;
+    image-rendering: optimizeSpeed;
 }
 
 .pizza_principal img {
