@@ -1,44 +1,52 @@
-body{
-    /* background-image: url(../img/background_pequeno.png); */
+body {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     overflow-x: hidden;
 }
 
-header{
+header {
     width: 100%;
     min-height: 98px;
     background-image: url('../img/navbar.svg');
     background-size: cover;
-   
 }
 
-nav{
+nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+}
+
+nav ul li a {
     font-size: 28px;
     color: white;
-    font-family: sans-serif;
-    font-weight: bolder;
-    
-
+    font-family: 'Karma', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
 }
 
-.hero{
+.hero {
     position: relative;
     max-width: 1400px;
     margin: 0 auto;
     min-height: 900px;
 }
 
-
-.hero_text{
+.hero_text {
     text-align: center;
     padding-top: 69px;
     z-index: 3;
     position: relative;
 }
 
-.hero_text h1{
+.hero_text h1 {
     font-family: "Kavoon";
     font-size: 96px;
     color: #FF3737;
@@ -48,7 +56,7 @@ nav{
     line-height: 1;
 }
 
-.hero_text h2{
+.hero_text h2 {
     font-family: "Karma";
     font-size: 64px;
     color: #FF3737;
@@ -57,18 +65,16 @@ nav{
     font-weight: 400;
 }
 
-.hero_text span{
+.hero_text span {
     font-family: "Karma";
     font-size: 40px;
     color: #FF3737;
     margin: 0;
     padding: 0;
     font-weight: 500;
-
 }
 
-
-.pizza_principal{
+.pizza_principal {
     position: absolute;
     left: 50%;
     transform: translateX(-48%);
@@ -76,85 +82,144 @@ nav{
     z-index: 2;
 }
 
-.pizza_principal img{
+.pizza_principal img {
     width: 796px; 
 }
 
-.queijo{
+.queijo {
     position: absolute;
     left: -28vh;
     margin-top: 8vh;
 }
 
-.queijo img{
+.queijo img {
     width: 392px;
 }
 
-
-.tomate{
+.tomate {
     position: absolute;
     right: -42vh;
     height: 644px;
 }
 
-
-.listras{
+.listras {
     width: 100vw;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     margin-top: 58vh;
-
-    
 }
-.cor1,
-.cor2, 
-.cor3{
+
+.cor1, .cor2, .cor3 {
     max-width: 100%;
     height: 10px;
 }
 
-.cor1{
-    background-color: #FF1180;
-}
-.cor2{
-    background-color: #FFE100;
-}
-.cor3{
-    background-color: #0095FF;
-}
+.cor1 { background-color: #FF1180; }
+.cor2 { background-color: #FFE100; }
+.cor3 { background-color: #0095FF; }
 
-.cards{
+.cards {
     display: flex;
     gap: 2vh;
     margin-top: 30vh;
     justify-content: center;
     align-items: center;
+    padding-bottom: 100px;
 }
 
-.card_sabor{
+.card_sabor {
     position: relative;   
-     width: 413px;
-
+    width: 413px;
+    transition: transform 0.2s;
 }
 
-.card_sabor span{
-    position: absolute;
+.card_sabor:hover {
+    transform: scale(1.03);
+}
 
-    top: 50%;
+.card_sabor span {
+    position: absolute;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
-
-    font-family: kavoon;
-    font-size: 64px;
+    font-family: "Kavoon", sans-serif;
+    font-size: 42px; /* Reduzi levemente para acomodar melhor textos longos */
     color: white;
-
     z-index: 2;
     text-align: center;
     text-shadow: 0 4px 8px rgba(0,0,0,0.6);
-
+    width: 90%;
 }
 
-.card_sabor img{
+.card_sabor img {
     display: block;
+    width: 100%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.menu-view {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px 100px 20px;
+}
+
+.menu-title-banner {
+    background-color: #FF3737;
+    color: white;
+    font-family: "Kavoon", sans-serif;
+    font-size: 48px;
+    padding: 20px 40px;
+    border-radius: 15px;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.pizza-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.pizza-card {
+    background-color: #F5F5F5;
+    border: 1px solid #E0E0E0;
+    border-radius: 25px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pizza-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.pizza-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.pizza-card h3 {
+    font-family: "Kavoon", sans-serif;
+    color: #FF3737;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.pizza-card p {
+    font-family: "Karma", sans-serif;
+    color: #333333;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 400;
 }
