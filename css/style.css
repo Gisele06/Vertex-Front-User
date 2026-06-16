@@ -10,6 +10,7 @@ header {
     min-height: 98px;
     background-image: url('../img/navbar.svg');
     background-size: cover;
+    justify-content: flex-end;
 }
 
 nav {
@@ -22,6 +23,7 @@ nav ul {
     display: flex;
     justify-content: flex-end;
     gap: 40px;
+    padding-left: 100px;
 }
 
 nav ul li a {
