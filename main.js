@@ -51,7 +51,7 @@ function carregarCardapio(tipoSelecionado) {
     // Limpa o grid antes de colocar os novos cards
     grid.innerHTML = '';
 
-    // Ajusta o título do banner de forma simples
+    // Ajustas o título do banner de forma simples
     if (tipoSelecionado === "Todos") {
         titleBanner.textContent = "Todos os Sabores";
     } else {
@@ -79,7 +79,7 @@ function carregarCardapio(tipoSelecionado) {
             processarPizzas(data);
         })
         .catch(() => {
-            // Se a API não responder, este bloco roda e mostra as pizzas na tela usando a lista provisória
+            // Se a API não responder ou estiver offline, usa a lista provisória local
             processarPizzas(dadosProvisorios);
         });
 }
