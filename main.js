@@ -2,14 +2,15 @@
 
 console.log("Main carregado");
 
-// URL da API que será utilizada quando o back-end estiver disponível
-const url = 'http://localhost:8080/v1/senai/pizzaria/pizza';
+//Pesquisar 
+async function getPersonagens(personagem) {
+    const url = ``
+    const response = await fetch(url)
+    const data = await response.json()
+     return data.data
+}
 
-<<<<<<< HEAD
-// Cria e retorna um card de pizza
-=======
 // Função para criar o card da pizza 
->>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
 function criarCardPizza(pizza) {
 
     // Cria a div principal do card
@@ -29,74 +30,60 @@ function criarCardPizza(pizza) {
     const descricao = document.createElement('p');
     descricao.textContent = pizza.descricao;
 
-<<<<<<< HEAD
-    // Adiciona todos os elementos dentro do card
-    card.append(img, titulo, descricao);
-=======
     card.appendChild(img);
     card.appendChild(titulo);
     card.appendChild(descricao);
->>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
 
     // Retorna o card pronto
     return card;
 }
 
-<<<<<<< HEAD
-// Lista provisória utilizada caso a API esteja desligada
-=======
->>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
 const dadosProvisorios = [
     {
         id: 1,
         nome: "Calabresa",
         descricao: "Molho de tomate especial, muçarela premium, calabresa defumada fatiada e cebola roxa.",
         imagem: "./img/pizza_home.png",
-        tipo: ["Salgada"]
+        tipo: [2]
     },
     {
         id: 2,
         nome: "Brigadeiro Gourmet",
         descricao: "Chocolate ao leite artesanal coberto com granulado belga e morangos frescos.",
         imagem: "./img/pizza_home.png",
-        tipo: ["Doce"]
+        tipo: [1]
     },
     {
         id: 3,
         nome: "Reprovados",
         descricao: "Leandro dos Reis, Gabriel, Enzzo, Gisele e Evelyn reprovados",
         imagem: "./img/sabor_manoel.png",
-        tipo: ["Salgada"]
+        tipo: [2]
     }
 ];
 
-<<<<<<< HEAD
-// Percorre a lista de pizzas e adiciona os cards na tela
+const TIPOS = {
+    Todos: "Todos",
+    Salgada: 2,
+    Doce: 1
+};
+
 function processarPizzas(listaPizzas, tipoSelecionado, grid, menuSection) {
 
-    // Percorre todas as pizzas recebidas
     for (let i = 0; i < listaPizzas.length; i++) {
-
         const pizza = listaPizzas[i];
 
-        // Exibe todas as pizzas ou apenas as do tipo selecionado
-        if (tipoSelecionado === "Todos" || pizza.tipo[0] === tipoSelecionado) {
+        const tipoPizza = pizza.tipo[0];
 
-            // Cria o card da pizza
+        if (tipoSelecionado === "Todos" || tipoPizza == tipoSelecionado) {
             const cardNovo = criarCardPizza(pizza);
-
-            // Adiciona o card dentro do grid
-            grid.append(cardNovo);
+            grid.appendChild(cardNovo);
         }
     }
 
-    // Exibe a seção do cardápio
     menuSection.classList.remove('hidden');
 }
 
-// Carrega o cardápio conforme a categoria escolhida
-=======
->>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
 function carregarCardapio(tipoSelecionado) {
 
     // Seleciona os elementos da página
@@ -104,41 +91,16 @@ function carregarCardapio(tipoSelecionado) {
     const titleBanner = document.getElementById('menu-title');
     const menuSection = document.getElementById('menu-view');
 
-<<<<<<< HEAD
-    // Limpa os cards exibidos anteriormente
-    grid.replaceChildren()
+    grid.replaceChildren();
 
-    // Atualiza o título conforme a categoria escolhida
-=======
-
-    grid.replaceChildren()
-
->>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
     if (tipoSelecionado === "Todos") {
         titleBanner.textContent = "Todos os Sabores";
-    } else {
-        titleBanner.textContent = "Pizzas " + tipoSelecionado + "s";
+    } else if (tipoSelecionado == 2) {
+        titleBanner.textContent = "Pizzas Salgadas";
+    } else if (tipoSelecionado == 1) {
+        titleBanner.textContent = "Pizzas Doces";
     }
 
-<<<<<<< HEAD
-    // Busca os dados da API
-=======
-  
-    function processarPizzas(listaPizzas) {
-
-
-        for (let i = 0; i < listaPizzas.length; i++) {
-            const pizza = listaPizzas[i];
-
-            if (tipoSelecionado === "Todos" || pizza.tipo[0] === tipoSelecionado) {
-                const cardNovo = criarCardPizza(pizza);
-                grid.appendChild(cardNovo);
-            }
-        }
-        menuSection.classList.remove('hidden');
-    }
-
->>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -147,35 +109,17 @@ function carregarCardapio(tipoSelecionado) {
             processarPizzas(data, tipoSelecionado, grid, menuSection);
 
         })
-<<<<<<< HEAD
-        .catch((erro) => {
-
-            // Caso a API esteja indisponível, utiliza os dados locais
-            console.log(erro);
-
-            processarPizzas(
-                dadosProvisorios,
-                tipoSelecionado,
-                grid,
-                menuSection
-            );
-        });
-}
-
-// Configura os eventos dos botões de categoria
-=======
         .catch(() => {
-            processarPizzas(dadosProvisorios);
+            processarPizzas(dadosProvisorios, tipoSelecionado, grid, menuSection);
         });
 }
 
->>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
 function inicializarBotoes() {
 
     // Seleciona todos os botões de categoria
     const botoesCategoria = document.querySelectorAll('.category-btn');
 
-    const grid = document.getElementById('pizza-grid')
+    const grid = document.getElementById('pizza-grid');
 
     // Percorre todos os botões encontrados
     for (let i = 0; i < botoesCategoria.length; i++) {
@@ -184,27 +128,23 @@ function inicializarBotoes() {
 
         // Adiciona o evento de clique
         botao.addEventListener('click', (evento) => {
-            grid.replaceChildren()
+            grid.replaceChildren();
+
             // Impede o comportamento padrão do botão/link
             evento.preventDefault();
 
             // Obtém a categoria do atributo data-type
-            const tipo = botao.getAttribute('data-type');
+            const tipoTexto = botao.getAttribute('data-type');
+
+            // converte para ID do backend
+            const tipo = TIPOS[tipoTexto];
 
             // Atualiza o cardápio
             carregarCardapio(tipo);
         });
     }
 
-<<<<<<< HEAD
-    // Carrega todas as pizzas ao abrir a página
     carregarCardapio('Todos');
 }
 
-// Aguarda o carregamento completo da página antes de executar o script
-=======
-    carregarCardapio('Todos'); 
-}
-
->>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
 window.onload = inicializarBotoes;
