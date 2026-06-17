@@ -5,7 +5,11 @@ console.log("Main carregado");
 // URL da API que será utilizada quando o back-end estiver disponível
 const url = 'http://localhost:8080/v1/senai/pizzaria/pizza';
 
+<<<<<<< HEAD
 // Cria e retorna um card de pizza
+=======
+// Função para criar o card da pizza 
+>>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
 function criarCardPizza(pizza) {
 
     // Cria a div principal do card
@@ -25,14 +29,23 @@ function criarCardPizza(pizza) {
     const descricao = document.createElement('p');
     descricao.textContent = pizza.descricao;
 
+<<<<<<< HEAD
     // Adiciona todos os elementos dentro do card
     card.append(img, titulo, descricao);
+=======
+    card.appendChild(img);
+    card.appendChild(titulo);
+    card.appendChild(descricao);
+>>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
 
     // Retorna o card pronto
     return card;
 }
 
+<<<<<<< HEAD
 // Lista provisória utilizada caso a API esteja desligada
+=======
+>>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
 const dadosProvisorios = [
     {
         id: 1,
@@ -47,9 +60,17 @@ const dadosProvisorios = [
         descricao: "Chocolate ao leite artesanal coberto com granulado belga e morangos frescos.",
         imagem: "./img/pizza_home.png",
         tipo: ["Doce"]
+    },
+    {
+        id: 3,
+        nome: "Reprovados",
+        descricao: "Leandro dos Reis, Gabriel, Enzzo, Gisele e Evelyn reprovados",
+        imagem: "./img/sabor_manoel.png",
+        tipo: ["Salgada"]
     }
 ];
 
+<<<<<<< HEAD
 // Percorre a lista de pizzas e adiciona os cards na tela
 function processarPizzas(listaPizzas, tipoSelecionado, grid, menuSection) {
 
@@ -74,6 +95,8 @@ function processarPizzas(listaPizzas, tipoSelecionado, grid, menuSection) {
 }
 
 // Carrega o cardápio conforme a categoria escolhida
+=======
+>>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
 function carregarCardapio(tipoSelecionado) {
 
     // Seleciona os elementos da página
@@ -81,17 +104,41 @@ function carregarCardapio(tipoSelecionado) {
     const titleBanner = document.getElementById('menu-title');
     const menuSection = document.getElementById('menu-view');
 
+<<<<<<< HEAD
     // Limpa os cards exibidos anteriormente
     grid.replaceChildren()
 
     // Atualiza o título conforme a categoria escolhida
+=======
+
+    grid.replaceChildren()
+
+>>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
     if (tipoSelecionado === "Todos") {
         titleBanner.textContent = "Todos os Sabores";
     } else {
         titleBanner.textContent = "Pizzas " + tipoSelecionado + "s";
     }
 
+<<<<<<< HEAD
     // Busca os dados da API
+=======
+  
+    function processarPizzas(listaPizzas) {
+
+
+        for (let i = 0; i < listaPizzas.length; i++) {
+            const pizza = listaPizzas[i];
+
+            if (tipoSelecionado === "Todos" || pizza.tipo[0] === tipoSelecionado) {
+                const cardNovo = criarCardPizza(pizza);
+                grid.appendChild(cardNovo);
+            }
+        }
+        menuSection.classList.remove('hidden');
+    }
+
+>>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -100,6 +147,7 @@ function carregarCardapio(tipoSelecionado) {
             processarPizzas(data, tipoSelecionado, grid, menuSection);
 
         })
+<<<<<<< HEAD
         .catch((erro) => {
 
             // Caso a API esteja indisponível, utiliza os dados locais
@@ -115,6 +163,13 @@ function carregarCardapio(tipoSelecionado) {
 }
 
 // Configura os eventos dos botões de categoria
+=======
+        .catch(() => {
+            processarPizzas(dadosProvisorios);
+        });
+}
+
+>>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
 function inicializarBotoes() {
 
     // Seleciona todos os botões de categoria
@@ -141,9 +196,15 @@ function inicializarBotoes() {
         });
     }
 
+<<<<<<< HEAD
     // Carrega todas as pizzas ao abrir a página
     carregarCardapio('Todos');
 }
 
 // Aguarda o carregamento completo da página antes de executar o script
+=======
+    carregarCardapio('Todos'); 
+}
+
+>>>>>>> ab8c69688756247e6075f97e672770d416bf97a9
 window.onload = inicializarBotoes;
