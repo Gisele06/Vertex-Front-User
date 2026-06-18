@@ -1,6 +1,6 @@
 'use strict'
 
-console.log("Main carregado com a estrutura correta do Postman!");
+console.log("Main carregado com a estrutura correta do Postman e suporte a imagens!");
 
 const url = "http://localhost:8080/v1/senai/pizzaria/pizza";
 
@@ -33,8 +33,22 @@ function criarCardPizza(pizza) {
     card.classList.add('pizza-card');
 
     const img = document.createElement('img');
-    // Caso a imagem seja apenas o nome do ficheiro (ex: "sensacao.png"), apontamos para a sua pasta ./img/
-    img.src = pizza.imagem.startsWith('http') || pizza.imagem.startsWith('./') ? pizza.imagem : `./img/${pizza.imagem}`;
+    
+    // Tratamento inteligente de caminhos de imagem:
+    if (!pizza.imagem) {
+        // Se não houver imagem nenhuma cadastrada, usa uma imagem padrão vazia
+        img.src = "./img/default-pizza.png"; 
+    } else if (pizza.imagem.startsWith('/uploads')) {
+        // Cenário 1: Upload inserido localmente pelo back-end
+        img.src = `http://localhost:8080${pizza.imagem}`;
+    } else if (pizza.imagem.startsWith('http://') || pizza.imagem.startsWith('https://')) {
+        // Cenário 2: Links completos da internet (como links do Cloudinary)
+        img.src = pizza.imagem;
+    } else {
+        // Cenário 3: Imagens locais antigas do front (ex: "sensacao.png" vira "./img/sensacao.png")
+        img.src = `./img/${pizza.imagem}`;
+    }
+
     img.alt = pizza.nome;
 
     const titulo = document.createElement('h3');
