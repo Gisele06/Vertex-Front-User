@@ -1,32 +1,45 @@
 'use strict'
 
-console.log("Main carregado");
+console.log("Main carregado com a estrutura correta do Postman!");
 
-//Pesquisar 
-async function getPersonagens(personagem) {
-    const url = ``
-    const response = await fetch(url)
-    const data = await response.json()
-     return data.data
+const url = "http://localhost:8080/v1/senai/pizzaria/pizza";
+
+let pizzas = [];
+
+// Busca pizzas na API mapeando a estrutura correta
+async function getPizzas() {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error("Erro ao buscar pizzas no servidor.");
+        }
+        const dados = await response.json();
+
+        // MAPEAMENTO DO POSTMAN: O array de pizzas está dentro de dados.response.pizza
+        if (dados.response && dados.response.pizza && Array.isArray(dados.response.pizza)) {
+            return dados.response.pizza;
+        }
+        
+        return [];
+    } catch (erro) {
+        console.error("Erro ao conectar com a API:", erro);
+        return []; 
+    }
 }
 
-// Função para criar o card da pizza 
+// Cria o card da pizza usando o padrão createElement / appendChild
 function criarCardPizza(pizza) {
-
-    // Cria a div principal do card
     const card = document.createElement('div');
     card.classList.add('pizza-card');
 
-    // Cria a imagem da pizza
     const img = document.createElement('img');
-    img.src = pizza.imagem;
+    // Caso a imagem seja apenas o nome do ficheiro (ex: "sensacao.png"), apontamos para a sua pasta ./img/
+    img.src = pizza.imagem.startsWith('http') || pizza.imagem.startsWith('./') ? pizza.imagem : `./img/${pizza.imagem}`;
     img.alt = pizza.nome;
 
-    // Cria o título com o nome da pizza
     const titulo = document.createElement('h3');
     titulo.textContent = pizza.nome;
 
-    // Cria o parágrafo com a descrição
     const descricao = document.createElement('p');
     descricao.textContent = pizza.descricao;
 
@@ -34,59 +47,35 @@ function criarCardPizza(pizza) {
     card.appendChild(titulo);
     card.appendChild(descricao);
 
-    // Retorna o card pronto
     return card;
 }
 
-const dadosProvisorios = [
-    {
-        id: 1,
-        nome: "Calabresa",
-        descricao: "Molho de tomate especial, muçarela premium, calabresa defumada fatiada e cebola roxa.",
-        imagem: "./img/pizza_home.png",
-        tipo: [2]
-    },
-    {
-        id: 2,
-        nome: "Brigadeiro Gourmet",
-        descricao: "Chocolate ao leite artesanal coberto com granulado belga e morangos frescos.",
-        imagem: "./img/pizza_home.png",
-        tipo: [1]
-    },
-    {
-        id: 3,
-        nome: "Reprovados",
-        descricao: "Leandro dos Reis, Gabriel, Enzzo, Gisele e Evelyn reprovados",
-        imagem: "./img/sabor_manoel.png",
-        tipo: [2]
-    }
-];
-
-const TIPOS = {
-    Todos: "Todos",
-    Salgada: 2,
-    Doce: 1
-};
-
+// Filtra e renderiza as pizzas com base no clique
 function processarPizzas(listaPizzas, tipoSelecionado, grid, menuSection) {
+    if (!listaPizzas || listaPizzas.length === 0) {
+        console.warn("Nenhuma pizza encontrada.");
+        return;
+    }
 
     for (let i = 0; i < listaPizzas.length; i++) {
         const pizza = listaPizzas[i];
 
-        const tipoPizza = pizza.tipo[0];
+        // MAPEAMENTO DO POSTMAN: Acedemos a pizza.tipo[0].nome para comparar o texto ("Doce" ou "Salgada")
+        const temTipo = pizza.tipo && pizza.tipo[0] && pizza.tipo[0].nome;
+        const tipoPizzaTexto = temTipo ? pizza.tipo[0].nome.toLowerCase() : "";
 
-        if (tipoSelecionado === "Todos" || tipoPizza == tipoSelecionado) {
+        if (tipoSelecionado === "Todos" || tipoPizzaTexto === tipoSelecionado.toLowerCase()) {
             const cardNovo = criarCardPizza(pizza);
             grid.appendChild(cardNovo);
         }
     }
-
     menuSection.classList.remove('hidden');
 }
 
-function carregarCardapio(tipoSelecionado) {
+// Comanda a atualização da tela
+async function carregarCardapio(tipoSelecionado) {
+    pizzas = await getPizzas();
 
-    // Seleciona os elementos da página
     const grid = document.getElementById('pizza-grid');
     const titleBanner = document.getElementById('menu-title');
     const menuSection = document.getElementById('menu-view');
@@ -95,56 +84,36 @@ function carregarCardapio(tipoSelecionado) {
 
     if (tipoSelecionado === "Todos") {
         titleBanner.textContent = "Todos os Sabores";
-    } else if (tipoSelecionado == 2) {
+    } else if (tipoSelecionado.toLowerCase() === "salgada") {
         titleBanner.textContent = "Pizzas Salgadas";
-    } else if (tipoSelecionado == 1) {
+    } else if (tipoSelecionado.toLowerCase() === "doce") {
         titleBanner.textContent = "Pizzas Doces";
     }
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-
-            // Processa os dados recebidos da API
-            processarPizzas(data, tipoSelecionado, grid, menuSection);
-
-        })
-        .catch(() => {
-            processarPizzas(dadosProvisorios, tipoSelecionado, grid, menuSection);
-        });
+    processarPizzas(pizzas, tipoSelecionado, grid, menuSection);
 }
 
+// Configura os botões de clique das categorias
 function inicializarBotoes() {
-
-    // Seleciona todos os botões de categoria
     const botoesCategoria = document.querySelectorAll('.category-btn');
 
-    const grid = document.getElementById('pizza-grid');
-
-    // Percorre todos os botões encontrados
     for (let i = 0; i < botoesCategoria.length; i++) {
-
         const botao = botoesCategoria[i];
 
-        // Adiciona o evento de clique
         botao.addEventListener('click', (evento) => {
-            grid.replaceChildren();
-
-            // Impede o comportamento padrão do botão/link
             evento.preventDefault();
 
-            // Obtém a categoria do atributo data-type
+            // Pega o valor do data-type ("Todos", "Salgada" ou "Doce")
             const tipoTexto = botao.getAttribute('data-type');
-
-            // converte para ID do backend
-            const tipo = TIPOS[tipoTexto];
-
-            // Atualiza o cardápio
-            carregarCardapio(tipo);
+            carregarCardapio(tipoTexto);
         });
     }
-
-    carregarCardapio('Todos');
 }
 
-window.onload = inicializarBotoes;
+// Inicialização automática do site
+async function inicializar() {
+    inicializarBotoes();
+    await carregarCardapio("Todos"); 
+}
+
+window.onload = inicializar;

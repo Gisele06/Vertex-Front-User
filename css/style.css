@@ -45,7 +45,6 @@ nav ul {
     display: flex; /* coloca itens lado a lado */
     justify-content: flex-end; /* joga menu para direita */
     gap: 40px; /* espaçamento entre itens */
-    padding-left: 100px; /* empurra conteúdo levemente para direita */
 }
 
 
