@@ -8,10 +8,10 @@ body {
     background-repeat: no-repeat;
 
     /* Faz a imagem de fundo cobrir toda a tela */
-    background-size: cover;
+     background-size: cover;
 
     /* Impede scroll horizontal (evita “quebras” laterais) */
-    overflow-x: hidden;
+   overflow-x: hidden;
 }
 
 
@@ -299,6 +299,19 @@ nav ul li a {
 
 @media (max-width: 1024px) {
 
+    html, body {
+        /*evita mover pro lado*/
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        
+        /* Evita repetição de imagens de fundo */
+        background-repeat: no-repeat;
+
+        /* Faz a imagem de fundo cobrir toda a tela */
+        background-size: cover;
+      }
+
     /* transforma grid em lista (1 por linha) */
     .pizza-grid {
         grid-template-columns: 1fr;
@@ -309,8 +322,8 @@ nav ul li a {
     .cards {
         flex-direction: column;
         align-items: center;
-        gap: 20px;
-        margin-top: 20vh;
+        gap: 30px;
+        margin-top: -21vh;
     }
 
     /* card de categoria vira botão horizontal */
@@ -337,22 +350,53 @@ nav ul li a {
         text-shadow: none;
     }
 
+    /*ajuste no home e no cardapio*/
+    nav ul li a {
+        font-size: 20px; /* tamanho grande para destaque */
+        color: white; /* texto branco */
+        font-family: 'Karma', sans-serif; /* fonte padrão do projeto */
+        font-weight: 700; /* negrito forte */
+        text-decoration: none; /* remove sublinhado */
+        margin-right: 4vh
+    }
+
+
     /* ajustes decorativos pequenos */
+    .queijo {
+        position: absolute;
+        left: 0vh;
+        margin-top: 5vh;
+    }
+    
+    /* ajuste da imagem de queijo */
     .queijo img {
-        width: 30px;
+        width: 230px;
+    }
+
+    /*ajuste no titulo*/
+    .hero {
+        position: relative; /* permite posicionamento absoluto dos elementos internos */
+        max-width: 1400px;
+        margin: 0 auto;
+        min-height: 900px; /* altura grande para layout impactante */
+        margin-top: -5vh;
     }
 
     /* cores específicas dos cards no tablet */
     #card-doces {
         background-color: #FF3737;
+        
     }
 
     #card-salgada {
         background-color: #3F1717;
+        border-color: #5c2a2a;
     }
 
     #card-todos {
         background-color: #118480;
+        border-color: #3dadaa;
+
     }
 
     /* reduz textos do hero */
@@ -361,8 +405,37 @@ nav ul li a {
     .hero_text span { font-size: 18px; }
 
     /* reduz tamanho da pizza principal */
+    .pizza_principal {
+        position: absolute;
+        left: 50%;
+        top: 327px;
+        z-index: 2;
+        margin-top: -11vh;
+        margin-left: 1vh;
+    }
+    
+    /* tamanho da pizza principal */
     .pizza_principal img {
-        width: 320px;
+        width: 440px;
+    }
+
+    /*ajuste das listras*/
+    .listras {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 32vh;
+    }
+
+    .tomate {
+        position: absolute;
+        right: -9vh;
+        height: 244px;
+        margin-top: -3vh;
+    }
+    .tomate img{
+        height: 340px;
     }
 
     /* card de pizza vira layout horizontal */
