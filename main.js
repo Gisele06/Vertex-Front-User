@@ -2,7 +2,7 @@
 
 console.log("Main carregado com a estrutura correta do Postman e suporte a imagens!");
 
-const url = "http://localhost:8080/v1/senai/pizzaria/pizza";
+const url = "https://back-vertex-0bof.onrender.com/v1/senai/pizzaria/pizza";
 
 let pizzas = [];
 
@@ -39,8 +39,8 @@ function criarCardPizza(pizza) {
         // Se não houver imagem nenhuma cadastrada, usa uma imagem padrão vazia
         img.src = "./img/default-pizza.png"; 
     } else if (pizza.imagem.startsWith('/uploads')) {
-        // Cenário 1: Upload inserido localmente pelo back-end
-        img.src = `http://localhost:8080${pizza.imagem}`;
+    // Cenário 1: Upload inserido localmente pelo back-end
+    img.src = `https://back-vertex-0bof.onrender.com${pizza.imagem}`;
     } else if (pizza.imagem.startsWith('http://') || pizza.imagem.startsWith('https://')) {
         // Cenário 2: Links completos da internet (como links do Cloudinary)
         img.src = pizza.imagem;
